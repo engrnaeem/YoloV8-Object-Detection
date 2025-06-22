@@ -6,19 +6,10 @@ This repository demonstrates how to train, validate, and use a YOLOv8 object det
 
 ```
 yolov8-custom-object-detection/
-├── datasets/
-│   └── custom_dataset/
-│       ├── images/
-│       │   ├── train/
-│       │   └── val/
-│       └── labels/
-│           ├── train/
-│           └── val/
-├── runs/
-├── yolov8n.yaml
+├──train
+├──valid
+├── test
 ├── data.yaml
-├── train.py
-├── detect.py
 └── README.md
 ```
 
@@ -49,8 +40,8 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 train: ./datasets/custom_dataset/images/train
 val: ./datasets/custom_dataset/images/val
 
-nc: 2  # Number of classes
-names: ['class_1', 'class_2']
+nc: 1  # Number of classes
+names: ['small']
 ```
 
 ## 🏋️‍♂️ Training the Model
@@ -59,15 +50,13 @@ Run the training command:
 
 ```bash
 yolo detect train \
-    model=yolov8n.yaml \
+    model=yolov8n.pt \
     data=data.yaml \
     epochs=100 \
     imgsz=640 \
     batch=16 \
     name=custom_yolov8
 ```
-
-Change `yolov8n.yaml` to other YOLOv8 variants like `yolov8s.yaml`, `yolov8m.yaml` etc., as needed.
 
 ## ✅ Model Validation
 
